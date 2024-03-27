@@ -1,0 +1,35 @@
+<%= form_with(model: tic_tac_toe_board, local: true) do |form| %>
+  <% if tic_tac_toe_board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tic_tac_toe_board.errors.count, "error") %> prohibited this tic_tac_toe_board from being saved:</h2>
+
+      <ul>
+      <% tic_tac_toe_board.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+
+      <div>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <div class="col-sm-6 col-md-4">
+      <%= form.label :name, 'Nama Player 1', class: 'col-sm-12 requiredStar' %>
+      <%= text_field_tag "users[][username]", nil, autofocus: true, required: true, class:  "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-6 col-md-4">
+      <%= form.label :name, 'Nama Player 2', class: 'col-sm-12 requiredStar' %>
+      <%= text_field_tag "users[][username]", nil, autofocus: true, required: true, class:  "form-control" %>
+    </div>
+    
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-6 col-md-8">
+      <%= form.submit 'Mulai Permainan', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

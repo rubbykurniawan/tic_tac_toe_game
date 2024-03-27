@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tic Tac Toe Boards</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= link_to 'New Tic Tac Toe Board', new_tic_tac_toe_board_path, class: 'btn' %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Players</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tic_tac_toe_boards.each do |tic_tac_toe_board| %>
+          <tr>
+            <td><%= tic_tac_toe_board.tic_tac_toe_players.first.user.username %> VS <%= tic_tac_toe_board.tic_tac_toe_players.last.user.username %></td>
+            <td><%= link_to 'Show', tic_tac_toe_board %></td>
+            <!-- <td><%#= link_to 'Edit', edit_tic_tac_toe_board_path(tic_tac_toe_board) %></td>
+            <td><%#= link_to 'Destroy', tic_tac_toe_board, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

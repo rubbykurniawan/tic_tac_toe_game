@@ -1,0 +1,23 @@
+<div class="col-md-6">
+    <h1><u>Tic Tac Toe Board</u></h1>
+    <br>
+    <h4><%= @player1 %> VS <%= @player2 %></h4>
+    <hr>
+    <h4>Pemenang: <%= @the_winners %></h4>
+    <hr>
+    <h4>Giliran: <%= @user_turn_on_play %> (<%= @initial %>)</h4>
+    <hr>
+    <table class='table border' border=1>
+        <% ('a'..'c').each do |row| %>
+            <tr>
+            <% ('1'..'3').each do |col| %>
+                <td style="text-align: center">
+                <% value = @tic_tac_toe_board.send("#{row}#{col}") %>
+                <%= (value.present? || @tic_tac_toe_board.game_state.eql?('finished')) ? value : button_tag('', type: 'button', class: 'btn-board applyBoard', data: { id: @tic_tac_toe_board.id, location: "#{row}#{col}", initial: @initial}) %>
+                </td>
+            <% end %>
+            </tr>
+        <% end %>
+        </table>
+    <%= link_to 'Back', tic_tac_toe_boards_path %>
+</div>

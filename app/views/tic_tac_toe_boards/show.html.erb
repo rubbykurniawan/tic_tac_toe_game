@@ -1,0 +1,47 @@
+<style>
+.btn-board {
+    width: 100%;
+    height: 31px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #ffff;
+    background: #fff;
+    border: 0px;
+    cursor: pointer;
+}
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<div id="append_table">
+    <%= render 'detail' %>
+</div>
+
+<%= content_for :javascript do %>
+  <script>
+    $(document).ready(function () {
+        $("body").on("click", ".applyBoard", function () {
+            var id = $(this).data('id');
+            var location = $(this).data('location');
+            var initial = $(this).data('initial');
+            console.log("Clicked on id:", id);
+            console.log("Clicked on location:", location);
+            // Di sini Anda dapat menambahkan logika untuk menangani klik pada lokasi tertentu di papan permainan
+            $.ajax({
+                url: "/tic_tac_toe_boards/" + id + ".js",
+                type: "PATCH",
+                data: {
+                    id: id,
+                    location: location,
+                    initial: initial,
+                    authenticity_token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                },
+                error: function (request, status, error) {
+                },
+            });
+        });
+    });
+  </script>
+<% end %>
